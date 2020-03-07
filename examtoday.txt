@@ -1,0 +1,303 @@
+CREATE DATABASE exam;
+
+USE exam;
+
+CREATE TABLE Dept_tb
+(
+	Dept_id INT,
+	Dept VARCHAR(20),
+	CONSTRAINT PK_DEPT_DEPTID PRIMARY KEY(Dept_id)
+); 
+
+DESC Dept_tb;
+
+INSERT INTO Dept_tb
+VALUES
+(1,'Electronics'),
+(2,'Civil'),
+(3,'Chemical');
+
+SELECT * FROM Dept_tb;
+
+
+
+
+CREATE TABLE Emp_tb
+(
+	Emp_id INT,
+	Name VARCHAR(20),
+	City VARCHAR(20),
+	State VARCHAR(20),	
+	Salary INT,
+	Dept_id INT,
+	CONSTRAINT PK_EMP_EMPID PRIMARY KEY(Emp_id),
+	CONSTRAINT FK_EMP_DEPTID FOREIGN KEY(Dept_id)
+	REFERENCES Dept_tb(Dept_id)
+);
+
+
+DESC Emp_tb;
+
+INSERT INTO Emp_tb
+VALUES
+(1, 'Abhishek', 'Mumbai', 'MH', 12000, 1 ),
+(2, 'Dipak', 'Pune', 'MH', 15000, 2 ),
+(3, 'Ravi', 'Surat', 'Gujrat', 7000, 1 ),
+(4, 'Radha', 'Delhi', 'Delhi', 19000, 1 ),
+(5, 'Suman', 'Panji', 'Goa', 14000, 3 ),
+(6, 'Adhik', 'Satara', 'MH', 10000, 2 );
+
+
+SELECT * FROM Emp_tb;
+
+SELECT * FROM Dept_tb;
+
+
+#1 SELECT Name FROM Emp_tb
+WHERE Dept_id IN 
+(SELECT Dept_id FROM Dept_tb
+WHERE Dept='Electronics');
+
+#2 SELECT Dept, COUNT(Emp_id) FROM Emp_tb e
+INNER JOIN Dept_tb d
+ON e.Dept_id=d.Dept_id
+GROUP BY Dept
+HAVING COUNT(Emp_id)>=2;
+
+
+#3 SELECT INSTR(NAME, 'dh') FROM Emp_tb
+WHERE Emp_id=4;
+
+
+#4 ALTER TABLE Emp_tb
+RENAME COLUMN Salary TO Sal;
+
+DESC Emp_tb;
+
+
+#5   
+
+
+
+
+
+
+
+#6 SELECT DATE_FORMAT(SYSDATE(), '%W,%D %M %Y');
+
+
+
+#7 SELECT Name from Emp_tb
+WHERE Name LIKE 'A%' AND Name LIKE '%a';
+
+
+#8 SELECT * FROM Emp_tb
+WHERE City='Mumbai';
+
+
+#9 SELECT Name FROM Emp_tb
+WHERE Name LIKE 'R%';
+
+
+#10 SELECT Name FROM Emp_tb
+WHERE Dept_id NOT IN
+(
+  SELECT Dept_id FROM Dept_tb
+  WHERE Dept = 'Electronics' AND Sal > 15000
+);
+
+
+		MONGODB
+
+use Exam;
+
+db.createCollection('Empss');
+
+
+
+
+db.Empss.save({{"Emp_id1"=1},{"Name"='Abhishek'},{"City"='Mumbai'}, {"State"='MH'}, {"Salary"=12000}, {"Dept_id1"=1}});
+
+
+
+
+
+
+
+
+
+
+
+
+
+		PL/SQL
+
+CREATE TEMPORARY TABLE temp
+(
+	addition VARCHAR(30)
+);
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS addnum;
+CREATE PROCEDURE addnum(IN a INT,IN b INT,in c int, in d int)
+BEGIN
+	DECLARE result INT;
+	SET result= a+b+c+d;
+	INSERT INTO temp
+	VALUES
+	(CONCAT(a,b,c,d,',',result));
+END $$
+DELIMITER ;
+
+
+
+
+CALL addnum(1,2,3,4);
+
+CALL addnum(5,5,5,5);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
